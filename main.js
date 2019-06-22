@@ -4,14 +4,18 @@ const electron = require('electron');
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+const threads = require('./service/utils/threads');
 
-const path = require('path')
-const url = require('url')
+const path = require('path');
+const url = require('url');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
 function createWindow() {
+    setTimeout(() => {
+        threads.initPool();
+    }, 100);
     // Create the browser window.
     mainWindow = new BrowserWindow({
         webPreferences: {
@@ -44,8 +48,8 @@ function createWindow() {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
-        mainWindow = null
-
+        mainWindow = null;
+        process.exit(0);
     })
 
 }

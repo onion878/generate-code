@@ -1,6 +1,7 @@
 <script>
   export let title;
   export let theme;
+  export let msg;
   let max = false;
   const win = nodeRequire("electron").remote.getCurrentWindow();
   function show() {
