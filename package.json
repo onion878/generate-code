@@ -1,0 +1,42 @@
+{
+  "name": "generate-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --x64",
+    "postinstall": "install-app-deps"
+  },
+  "build": {
+    "appId": "onion.app.GenaretorTool",
+    "asar": true,
+    "mac": {
+      "icon": "ui/public/resources/code.png",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "icon": "ui/public/resources/code.png",
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^5.0.2",
+    "electron-builder": "^20.43.0"
+  },
+  "dependencies": {
+    "app-root-path": "^2.2.1",
+    "cjson": "^0.5.0",
+    "request": "^2.88.0",
+    "shelljs": "^0.8.3"
+  }
+}
