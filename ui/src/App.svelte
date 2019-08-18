@@ -31,12 +31,16 @@
     left: 50px;
     position: absolute;
   }
+
+  :focus {
+    outline: var(--focus-border) auto 5px;
+  }
 </style>
 
 <div
   class="main"
   style="--background: {theme.colors.foreground}; --color: {theme.colors['background']};
-  --focus:{theme.colors['focusBorder']}">
+  --focus:{theme.colors['focus']}; --focus-border: {theme.colors['focusBorder']}">
   <TitleBar title="Onion" bind:theme bind:msg />
   <ActivityBar title="Onion" bind:theme bind:msg />
   <div class="content">

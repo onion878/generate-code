@@ -2,6 +2,7 @@ const reqlib = require('app-root-path').require;
 const fs = require('fs');
 const path = require('path');
 const appPath = require('app-root-path');
+const defaultPath = appPath.path + '';
 const cjson = require('cjson');
 
 const folder = 'D:\\themes';
@@ -119,7 +120,7 @@ let themes = [
 class Theme {
 
     getTheme() {
-        const v = themes[9];
+        const v = themes[5];
         return this.readData(v);
     }
 
@@ -141,8 +142,6 @@ class Theme {
                 }
             });
         } else {
-            console.log(files);
-
             const c = require(dir + '/package.json')['contributes'];
             if (c === undefined) return;
             const list = c['themes'];
@@ -163,10 +162,9 @@ class Theme {
         if (d['include']) {
             this.readInclude(d, file, paths);
         }
-        paths.push(uiTheme == 'vs-dark' ? folder + '/theme-base/night.json' : folder + '/theme-base/light.json');
-        console.log(paths);
-
+        paths.push(uiTheme == 'vs-dark' ? defaultPath + '/ui/theme/night.json' : defaultPath + '/ui/theme/light.json');
         const data = cjson.load(paths.reverse(), true);
+        data.theme = uiTheme;
         return data;
     }
 

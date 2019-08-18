@@ -12,15 +12,23 @@
       isResizing = true;
       lastDownX = e.clientX;
     };
-
+    let oldX = 0;
     document.onmousemove = function(e) {
+      e.preventDefault();
       // we don't want to do anything if we aren't resizing.
       if (!isResizing) {
+        return;
+      }
+      if (left.offsetWidth < 100 && e.x < oldX) {
+        return;
+      }
+       if (right.offsetWidth < 100 && e.x > oldX) {
         return;
       }
       const offsetRight = e.clientX - 50;
       left.style.width = offsetRight + "px";
       right.style.left = offsetRight + "px";
+      oldX = e.x;
     };
 
     document.onmouseup = function(e) {

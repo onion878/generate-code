@@ -30,16 +30,18 @@ function createWindow() {
         icon: './ui/public/resources/code.png',
         frame: false,
         resizable: true
-    })
+    });
 
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'ui/public/index.html'),
         protocol: 'file:',
         slashes: true
-    }))
+    }));
 
-    mainWindow.show();
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show();
+    });
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()
 
