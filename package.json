@@ -30,8 +30,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^5.0.2",
-    "electron-builder": "^20.43.0"
+    "electron": "^6.0.2",
+    "electron-builder": "^21.2.0"
   },
   "dependencies": {
     "app-root-path": "^2.2.1",
