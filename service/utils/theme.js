@@ -19,16 +19,16 @@ let themes = [
         label: 'Dark+ (default dark)',
         uiTheme: 'vs-dark',
         path: './themes/dark_plus.json',
-        folder: 'D:\\themes/theme-defaults',
-        file: 'D:\\themes\\theme-defaults\\themes\\dark_plus.json'
+        folder: 'C:\\Users\\22148\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\theme-defaults',
+        file: 'C:\\Users\\22148\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\theme-defaults\\themes\\dark_plus.json'
     },
     {
         id: 'Default Light+',
         label: 'Light+ (default light)',
         uiTheme: 'vs',
         path: './themes/light_plus.json',
-        folder: 'D:\\themes/theme-defaults',
-        file: 'D:\\themes\\theme-defaults\\themes\\light_plus.json'
+        folder: 'C:\\Users\\22148\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions/theme-defaults',
+        file: 'C:\\Users\\22148\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\theme-defaults\\themes\\light_plus.json'
     },
     {
         id: 'Visual Studio Dark',
@@ -120,7 +120,7 @@ let themes = [
 class Theme {
 
     getTheme() {
-        const v = themes[5];
+        const v = themes[1];
         return this.readData(v);
     }
 

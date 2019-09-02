@@ -13,6 +13,7 @@
   const toggleTerminal = () => {
     msg = msg + "Onion ==";
   };
+  console.log(JSON.stringify(theme.colors));
 </script>
 
 <style>
