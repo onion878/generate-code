@@ -120,7 +120,7 @@ let themes = [
 class Theme {
 
     getTheme() {
-        const v = themes[1];
+        const v = themes[2];
         return this.readData(v);
     }
 

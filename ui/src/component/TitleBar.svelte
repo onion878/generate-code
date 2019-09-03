@@ -4,6 +4,7 @@
   export let msg;
   let max = false;
   const win = nodeRequire("electron").remote.getCurrentWindow();
+  const { app, dialog } = nodeRequire("electron").remote;
   function show() {
     max = !max;
   }
@@ -35,7 +36,32 @@
     btn.parentNode.style.display = "none";
     setTimeout(() => {
       btn.parentNode.style.display = null;
-    }, 100);
+    }, 50);
+  }
+
+  let system;
+
+  function systemClick(type) {
+    switch (type) {
+      case "theme":
+        changeTheme();
+        break;
+      case "console":
+        win.webContents.openDevTools();
+        break;
+      default:
+        break;
+    }
+    system.style.display = "none";
+    setTimeout(() => {
+      system.style.display = null;
+    }, 50);
+  }
+
+  function changeTheme() {
+    return new Promise((resolve, reject) => {
+      resolve();
+    });
   }
 </script>
 
@@ -244,9 +270,10 @@
         on:click={show}>
         系统
       </div>
-      <div class="menu-content">
+      <div class="menu-content" bind:this={system}>
         <div>设置</div>
-        <div>控制台</div>
+        <div on:click={() => systemClick('theme')}>切换主题</div>
+        <div on:click={() => systemClick('console')}>控制台</div>
         <div>系统日志</div>
         <div>操作历史</div>
         <div>更新日志</div>
