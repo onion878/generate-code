@@ -23,11 +23,6 @@
   hotkeys("f1", function(event, handler) {
     quickShow = "block";
   });
-
-  hotkeys("esc", function(event, handler) {
-    quickShow = "none";
-  });
-
 </script>
 
 <style>
@@ -105,7 +100,8 @@
 <div
   class="main"
   style="--background: {theme.colors.foreground}; --color: {theme.colors['background']};
-  --focus:{theme.colors['focus']}; --focus-border: {theme.colors['focusBorder']}; --shadow: {theme.colors['widget.shadow']}">
+  --focus:{theme.colors['focus']}; --focus-border: {theme.colors['focusBorder']};
+  --shadow: {theme.colors['widget.shadow']}">
   <TitleBar title="Onion" bind:theme bind:msg />
   <div class="monaco-progress-container">
     <div

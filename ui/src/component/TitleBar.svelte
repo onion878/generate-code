@@ -2,19 +2,14 @@
   export let title;
   export let theme;
   export let msg;
-  let max = false;
   const win = nodeRequire("electron").remote.getCurrentWindow();
   const { app, dialog } = nodeRequire("electron").remote;
-  function show() {
-    max = !max;
-  }
-
+  let max = win.isMaximized();
   function toggleWin() {
+    max = !max;
     if (win.isMaximized()) {
-      max = false;
       win.restore();
     } else {
-      max = true;
       win.maximize();
     }
   }
@@ -28,23 +23,39 @@
   }
   window.onresize = onResize;
 
-  function about() {
-    hideMenu(this);
-  }
-
-  function hideMenu(btn) {
-    btn.parentNode.style.display = "none";
-    setTimeout(() => {
-      btn.parentNode.style.display = null;
-    }, 50);
-  }
-
   let system;
+  let systemFlag = "none",
+    fileFlag = "none",
+    helpFlag = "none";
+  window.onclick = function(event) {
+    if (!event.target.matches(".menubar-menu-title")) {
+      systemFlag = "none";
+      fileFlag = "none";
+      helpFlag = "none";
+    }
+  };
+
+  function toggleSystem() {
+    fileFlag = "none";
+    helpFlag = "none";
+    systemFlag = "block";
+  }
+
+  function toggleFile() {
+    fileFlag = "block";
+    helpFlag = "none";
+    systemFlag = "none";
+  }
+
+  function toggleHelp() {
+    fileFlag = "none";
+    helpFlag = "block";
+    systemFlag = "none";
+  }
 
   function systemClick(type) {
     switch (type) {
       case "theme":
-        changeTheme();
         break;
       case "console":
         win.webContents.openDevTools();
@@ -52,16 +63,6 @@
       default:
         break;
     }
-    system.style.display = "none";
-    setTimeout(() => {
-      system.style.display = null;
-    }, 50);
-  }
-
-  function changeTheme() {
-    return new Promise((resolve, reject) => {
-      resolve();
-    });
   }
 </script>
 
@@ -146,16 +147,11 @@
 
   .menubar > .menubar-menu-button .menu-content {
     margin-left: -8px;
-    display: none;
     position: absolute;
     min-width: 100px;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 3;
     background: var(--title-menu-background);
-  }
-
-  .menubar > .menubar-menu-button:hover .menu-content {
-    display: block;
   }
 
   .menubar > .menubar-menu-button .menu-content div {
@@ -250,10 +246,10 @@
         class="menubar-menu-title"
         role="none"
         aria-hidden="true"
-        on:click={show}>
-        文件
+        on:click={toggleFile}>
+        模板
       </div>
-      <div class="menu-content">
+      <div class="menu-content" style="display:{fileFlag}">
         <div>新建模板</div>
         <div>切换模板</div>
         <div>模板管理</div>
@@ -267,10 +263,10 @@
         class="menubar-menu-title"
         role="none"
         aria-hidden="true"
-        on:click={show}>
+        on:click={toggleSystem}>
         系统
       </div>
-      <div class="menu-content" bind:this={system}>
+      <div class="menu-content" bind:this={system} style="display:{systemFlag}">
         <div>设置</div>
         <div on:click={() => systemClick('theme')}>切换主题</div>
         <div on:click={() => systemClick('console')}>控制台</div>
@@ -289,15 +285,15 @@
         class="menubar-menu-title"
         role="none"
         aria-hidden="true"
-        on:click={show}>
+        on:click={toggleHelp}>
         帮助
       </div>
-      <div class="menu-content">
+      <div class="menu-content" style="display:{helpFlag}">
         <div>Github</div>
         <div>教程</div>
         <div>文档</div>
         <div class="separator" />
-        <div on:click={about}>关于</div>
+        <div>关于</div>
       </div>
     </div>
   </div>
