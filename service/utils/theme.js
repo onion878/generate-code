@@ -5,7 +5,7 @@ const appPath = require('app-root-path');
 const defaultPath = appPath.path + '';
 const cjson = require('cjson');
 
-const folder = 'D:\\themes';
+const folder = 'C:\\workspace\\themes';
 let themes = [
     {
         label: 'Abyss',
@@ -19,8 +19,8 @@ let themes = [
         label: 'Dark+ (default dark)',
         uiTheme: 'vs-dark',
         path: './themes/dark_plus.json',
-        folder: 'C:\\Users\\22148\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\theme-defaults',
-        file: 'C:\\Users\\22148\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\theme-defaults\\themes\\dark_plus.json'
+        folder: 'C:\\workspace\\themes\\theme-defaults',
+        file: 'C:\\workspace\\themes\\theme-defaults\\themes\\dark_plus.json'
     },
     {
         id: 'Default Light+',
@@ -120,7 +120,7 @@ let themes = [
 class Theme {
 
     getTheme() {
-        const v = themes[2];
+        const v = themes[1];
         return this.readData(v);
     }
 
